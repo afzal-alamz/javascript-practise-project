@@ -1,0 +1,226 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #2c3e50;
+    transition: background 0.5s ease;
+    padding: 20px;
+}
+
+body.light {
+    background: #ecf0f1;
+}
+
+.container {
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+h1 {
+    color: #fff;
+    margin-bottom: 50px;
+    font-size: 2.5rem;
+    transition: color 0.5s ease;
+}
+
+body.light h1 {
+    color: #2c3e50;
+}
+
+.bulb-container {
+    position: relative;
+    width: 200px;
+    height: 280px;
+    margin: 0 auto 50px;
+}
+
+/* Light Bulb Structure */
+.bulb {
+    position: relative;
+    width: 120px;
+    height: 180px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+}
+
+/* Bulb Top (Glass part) */
+.bulb-top {
+    width: 120px;
+    height: 120px;
+    background: #555;
+    border-radius: 50%;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Bulb Middle (Neck) */
+.bulb-middle {
+    width: 60px;
+    height: 30px;
+    background: #888;
+    margin: 0 auto;
+    border-radius: 0 0 10px 10px;
+    transition: all 0.3s ease;
+}
+
+/* Bulb Bottom (Thread) */
+.bulb-bottom {
+    width: 70px;
+    height: 20px;
+    background: linear-gradient(to bottom, #999, #777);
+    margin: 0 auto;
+    border-radius: 3px;
+}
+
+/* Bulb Base */
+.bulb-base {
+    width: 65px;
+    height: 10px;
+    background: #666;
+    margin: 2px auto 0;
+    border-radius: 5px;
+}
+
+/* Bulb ON State */
+.bulb.on .bulb-top {
+    background: radial-gradient(circle, #fff9c4 0%, #ffeb3b 50%, #ffc107 100%);
+    box-shadow: 
+        0 0 30px #ffeb3b,
+        0 0 60px #ffc107,
+        inset 0 -10px 20px rgba(255, 235, 59, 0.3);
+}
+
+.bulb.on .bulb-middle {
+    background: #aaa;
+}
+
+/* Light Rays */
+.rays {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.rays.active {
+    opacity: 1;
+}
+
+.ray {
+    position: absolute;
+    width: 4px;
+    height: 60px;
+    background: linear-gradient(to bottom, #ffeb3b, transparent);
+    top: 50%;
+    left: 50%;
+    transform-origin: center -40px;
+    animation: pulse 1.5s infinite;
+}
+
+.ray1 { transform: translate(-50%, -50%) rotate(0deg); }
+.ray2 { transform: translate(-50%, -50%) rotate(45deg); }
+.ray3 { transform: translate(-50%, -50%) rotate(90deg); }
+.ray4 { transform: translate(-50%, -50%) rotate(135deg); }
+.ray5 { transform: translate(-50%, -50%) rotate(180deg); }
+.ray6 { transform: translate(-50%, -50%) rotate(225deg); }
+.ray7 { transform: translate(-50%, -50%) rotate(270deg); }
+.ray8 { transform: translate(-50%, -50%) rotate(315deg); }
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.4;
+        transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(var(--rotation)) scale(1.1);
+    }
+}
+
+/* Toggle Button */
+.toggle-btn {
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    background: #3498db;
+    color: white;
+    box-shadow: 0 5px 20px rgba(52, 152, 219, 0.4);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.toggle-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.6);
+}
+
+.toggle-btn:active {
+    transform: translateY(-1px);
+}
+
+.toggle-btn.on {
+    background: #e74c3c;
+    box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
+}
+
+.toggle-btn.on:hover {
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6);
+}
+
+/* Status Text */
+.status {
+    margin-top: 30px;
+    font-size: 1.3rem;
+    color: #bdc3c7;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+body.light .status {
+    color: #7f8c8d;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .bulb-container {
+        width: 160px;
+        height: 240px;
+    }
+    
+    .bulb {
+        width: 100px;
+        height: 150px;
+    }
+    
+    .bulb-top {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .toggle-btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
